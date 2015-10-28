@@ -44,7 +44,14 @@ commands used to create and configure the containers.
 
 ### Docker Compose
 
+There are 4 docker containers needed for the base Kaiwa install:
 
+* postgres
+* ldap
+* kaiwa-server (prosody)
+* kaiwa (web)
+
+These are detailed in the `docker-compose.yml` file.
 
 
 

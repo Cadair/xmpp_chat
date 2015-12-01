@@ -9,12 +9,18 @@ postgres:
 # Somehow need to add users to server
 ldap:
     image: nickstenning/slapd
+    command: /etc/service/slapd/run
     expose:
         - "389"
     environment:
         - LDAP_DOMAIN=localhost
         - LDAP_ORGANISATION=cadair
         - LDAP_ROOTPASS=hello
+
+ldap-configure:
+    build: slapd-configure/
+    links: 
+        - ldap:ldap
 
 prosody:
     image: sebu77/kaiwa-server

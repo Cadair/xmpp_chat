@@ -64,3 +64,9 @@ TODO List
 
 1. Set up the docker containers using docker-compose.
 1. Add biboumi to the set of containers, and get the IRC bridge working.
+
+
+Other Links Etc
+---------------
+
+This might be worth looking into: https://github.com/normanr/irc-transport

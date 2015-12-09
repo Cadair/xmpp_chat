@@ -25,6 +25,11 @@ ldap-configure:
         - LDAP_DN=cn=admin,dc=cadair
         - LDAP_ROOTPASS=hello
 
+ldap-configure:
+    build: slapd-configure/
+    links: 
+        - ldap:ldap
+
 prosody:
     image: sebu77/kaiwa-server
     ports:

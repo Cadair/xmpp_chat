@@ -3,8 +3,8 @@ postgres:
     expose: 
         - "5432"
     environment:
-        - POSTGRESQL_USER=kaiwa
-        - POSTGRESQL_PASSWORD=hello
+        - POSTGRES_USER=kaiwa
+        - POSTGRES_PASSWORD=hello
 
 ldap:
     image: nickstenning/slapd

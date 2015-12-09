@@ -9,11 +9,20 @@ postgres:
 # Somehow need to add users to server
 ldap:
     image: nickstenning/slapd
+    command: /etc/service/slapd/run
     expose:
         - "389"
     environment:
-        - LDAP_DOMAIN=localhost
-        - LDAP_ORGANISATION=cadair
+        - LDAP_DOMAIN=cadair
+        - LDAP_ORGANISATION=cadairorg
+        - LDAP_ROOTPASS=hello
+
+ldap-configure:
+    build: slapd-configure/
+    links: 
+        - ldap:ldap
+    environment:
+        - LDAP_DN=cn=admin,dc=cadair
         - LDAP_ROOTPASS=hello
 
 prosody:
@@ -45,7 +54,7 @@ kaiwa:
         - ldap:ldap
     environment:
         - VIRTUAL_HOST=localhost
-        - VIRTUAL_PORT=80
+        - VIRTUAL_PORT=8000
         - XMPP_NAME=cadair
         - XMPP_DOMAIN=localhost
         - XMPP_WSS=ws://localhost:5280/xmpp-websocket

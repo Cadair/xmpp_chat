@@ -6,7 +6,6 @@ postgres:
         - POSTGRESQL_USER=kaiwa
         - POSTGRESQL_PASSWORD=hello
 
-# Somehow need to add users to server
 ldap:
     image: nickstenning/slapd
     command: /etc/service/slapd/run
@@ -24,11 +23,6 @@ ldap-configure:
     environment:
         - LDAP_DN=cn=admin,dc=cadair
         - LDAP_ROOTPASS=hello
-
-ldap-configure:
-    build: slapd-configure/
-    links: 
-        - ldap:ldap
 
 prosody:
     image: sebu77/kaiwa-server

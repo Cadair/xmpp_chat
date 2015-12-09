@@ -12,7 +12,7 @@ ldap:
     expose:
         - "389"
     environment:
-        - LDAP_DOMAIN=cadair
+        - LDAP_DOMAIN=localhost
         - LDAP_ORGANISATION=cadairorg
         - LDAP_ROOTPASS=hello
 
@@ -21,7 +21,7 @@ ldap-configure:
     links: 
         - ldap:ldap
     environment:
-        - LDAP_DN=cn=admin,dc=cadair
+        - LDAP_DN=cn=admin,dc=localhost
         - LDAP_ROOTPASS=hello
 
 prosody:
@@ -39,9 +39,9 @@ prosody:
         - DB_NAME=kaiwa
         - DB_USER=kaiwa
         - DB_PWD=hello
-        - LDAP_USER_BASE=ou=users,dc=cadair
-        - LDAP_GROUP_BASE=ou=groups,dc=cadair
-        - LDAP_DN=cn=admin,dc=cadair
+        - LDAP_USER_BASE=ou=users,dc=localhost
+        - LDAP_GROUP_BASE=ou=groups,dc=localhost
+        - LDAP_DN=cn=admin,dc=localhost
         - LDAP_PWD=hello
         - LDAP_GROUP=cadair
 
@@ -60,8 +60,8 @@ kaiwa:
         - XMPP_MUC=chat.localhost
         - XMPP_STARTUP=groupchat/home%40chat.localhost
         - XMPP_ADMIN=admin
-        - LDAP_USER_BASE=ou=users,dc=cadair
-        - LDAP_GROUP_BASE=ou=groups,dc=cadair
-        - LDAP_DN=cn=admin,dc=cadair
+        - LDAP_USER_BASE=ou=users,dc=localhost
+        - LDAP_GROUP_BASE=ou=groups,dc=localhost
+        - LDAP_DN=cn=admin,dc=localhost
         - LDAP_PWD=hello
         - LDAP_GROUP=cadair

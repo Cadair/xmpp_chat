@@ -1,24 +1,24 @@
-dn: ou=users,dc=cadair
+dn: ou=users,dc=localhost
 objectClass: organizationalUnit
 ou: users
 
-dn: ou=groups,dc=cadair
+dn: ou=groups,dc=localhost
 objectClass: organizationalunit
 ou: groups
 
-dn: cn=exampleGroup,ou=groups,dc=cadair
+dn: cn=exampleGroup,ou=groups,dc=localhost
 objectClass: groupOfNames
 description: ExampleDesc
-member: uid=user1,ou=users,dc=cadair
+member: uid=user1,ou=users,dc=localhost
 cn: exampleGroup
 
-dn: cn=admins,ou=groups,dc=cadair
+dn: cn=admins,ou=groups,dc=localhost
 objectClass: groupOfNames
 description: Admins
-member: uid=admin,ou=users,dc=cadair
+member: uid=admin,ou=users,dc=localhost
 cn: admins
 
-dn: uid=user1,ou=users,dc=cadair
+dn: uid=user1,ou=users,dc=localhost
 objectClass: organizationalPerson
 objectClass: person
 objectClass: inetOrgPerson
@@ -30,7 +30,7 @@ displayName: user1
 userPassword: user1pass
 mail: user1@localhost
 
-dn: uid=admin,ou=users,dc=cadair
+dn: uid=admin,ou=users,dc=localhost
 objectClass: organizationalPerson
 objectClass: person
 objectClass: inetOrgPerson

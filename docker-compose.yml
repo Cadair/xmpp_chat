@@ -1,5 +1,5 @@
 postgres:
-    image: postgres
+    image: postgres:latest
     expose: 
         - "5432"
     environment:

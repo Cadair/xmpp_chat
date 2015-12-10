@@ -3,8 +3,8 @@ postgres:
     expose: 
         - "5432"
     environment:
-        - POSTGRES_USER=kaiwa
-        - POSTGRES_PASSWORD=hello
+        - POSTGRES_USER=$DB_USER
+        - POSTGRES_PASSWORD=$DB_PASS
 
 ldap:
     image: nickstenning/slapd
@@ -12,9 +12,9 @@ ldap:
     expose:
         - "389"
     environment:
-        - LDAP_DOMAIN=localhost
-        - LDAP_ORGANISATION=cadairorg
-        - LDAP_ROOTPASS=hello
+        - LDAP_DOMAIN=$DOMAIN
+        - LDAP_ORGANISATION=$LDAP_ORG
+        - LDAP_ROOTPASS=$LDAP_PASS
 
 ldap-configure:
     build: slapd-configure/
@@ -23,8 +23,8 @@ ldap-configure:
     links: 
         - ldap:ldap
     environment:
-        - LDAP_DN=cn=admin,dc=localhost
-        - LDAP_ROOTPASS=hello
+        - LDAP_DN=cn=admin,$LDAP_DN
+        - LDAP_ROOTPASS=$LDAP_PASS
 
 prosody:
     image: sebu77/kaiwa-server
@@ -37,15 +37,15 @@ prosody:
         - postgres:postgres
         - ldap:ldap
     environment:
-        - XMPP_DOMAIN=localhost
-        - DB_NAME=kaiwa
-        - DB_USER=kaiwa
-        - DB_PWD=hello
-        - LDAP_USER_BASE=ou=users,dc=localhost
-        - LDAP_GROUP_BASE=ou=groups,dc=localhost
-        - LDAP_DN=cn=admin,dc=localhost
-        - LDAP_PWD=hello
-        - LDAP_GROUP=cadair
+        - XMPP_DOMAIN=$XMPP_DOMAIN
+        - DB_NAME=$DB_USER
+        - DB_USER=$DB_USER
+        - DB_PWD=$DB_PASS
+        - LDAP_USER_BASE=ou=users,$LDAP_DN
+        - LDAP_GROUP_BASE=ou=groups,$LDAP_DN
+        - LDAP_DN=cn=admin,$LDAP_DN
+        - LDAP_PWD=$LDAP_PASS
+        - LDAP_GROUP=$LDAP_GROUP
 
 kaiwa:
     image: sebu77/kaiwa
@@ -57,13 +57,13 @@ kaiwa:
         - VIRTUAL_HOST=localhost
         - VIRTUAL_PORT=8000
         - XMPP_NAME=cadair
-        - XMPP_DOMAIN=localhost
+        - XMPP_DOMAIN=$XMPP_DOMAIN
         - XMPP_WSS=ws://localhost:5280/xmpp-websocket
         - XMPP_MUC=chat.localhost
         - XMPP_STARTUP=groupchat/home%40chat.localhost
         - XMPP_ADMIN=admin
-        - LDAP_USER_BASE=ou=users,dc=localhost
-        - LDAP_GROUP_BASE=ou=groups,dc=localhost
-        - LDAP_DN=cn=admin,dc=localhost
-        - LDAP_PWD=hello
-        - LDAP_GROUP=cadair
+        - LDAP_USER_BASE=ou=users,$LDAP_DN
+        - LDAP_GROUP_BASE=ou=groups,$LDAP_DN
+        - LDAP_DN=cn=admin,$LDAP_DN
+        - LDAP_PWD=$LDAP_PASS
+        - LDAP_GROUP=$LDAP_GROUP

@@ -33,6 +33,7 @@ prosody:
         - "5280:5280"
         - "5281:5281"
         - "3478:3478"
+        - "5222:5222"
     links:
         - postgres:postgres
         - ldap:ldap

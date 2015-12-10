@@ -1,7 +1,9 @@
 XMPP Server
 -----------
 
-This is all about configuring an XMPP based replacement for slack. Primarily
+The idea of this project is to provide an easy to use (both user and server
+side) chat solution based on open protocols. It is inspired by some issues when
+using IRC alone and propriatry solutions like Gitter or Slack. Primarily
 this is based on the needs of the SunPy project. The basic requirements for
 this project are:
 
@@ -9,10 +11,10 @@ this project are:
 * Provide integration with GitHub, Travis and other services.
 * Provide a bridge to the IRC channel.
 * Provide a web interface to the chat service.
-* Provide high-quality Android and iOS apps.
+* Provide Android and iOS apps.
 
-XMPP with an IRC bridge and the kaiwa web interface have been chosen to provide
-this setup.
+XMPP with an IRC bridge and the kaiwa web interface can provide this setup
+using existing tools and clients.
 
 1. [Prosody Server](http://prosody.im/).
 2. [biboumi](http://biboumi.louiz.org/) IRC Bridge.
@@ -51,8 +53,14 @@ There are 4 docker containers needed for the base Kaiwa install:
 * kaiwa-server (prosody)
 * kaiwa (web)
 
-These are detailed in the `docker-compose.yml` file.
+These four are complemented with an extra container which adds the users from
+the `users.ldif` file in the base directory at start up. Once the users have
+been added the `slapd-configure` container will terminate.
 
+The `docker-compose.yml` file uses shell environment variables to set
+configuration options (many of which are repeated in the config for different
+containers), you can (and should) modify `environment.sh` and source that file
+before using this anywhere other than for local testing.
 
 
 
@@ -62,7 +70,7 @@ These are detailed in the `docker-compose.yml` file.
 TODO List
 ---------
 
-1. Set up the docker containers using docker-compose.
+1. ~Set up the docker containers using docker-compose.~
 1. Add biboumi to the set of containers, and get the IRC bridge working.
 
 

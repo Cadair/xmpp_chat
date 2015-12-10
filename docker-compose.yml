@@ -18,6 +18,8 @@ ldap:
 
 ldap-configure:
     build: slapd-configure/
+    volumes:
+        - ./users.ldif:/root/users.ldif
     links: 
         - ldap:ldap
     environment:

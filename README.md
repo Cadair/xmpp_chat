@@ -59,8 +59,10 @@ been added the `slapd-configure` container will terminate.
 
 The `docker-compose.yml` file uses shell environment variables to set
 configuration options (many of which are repeated in the config for different
-containers), you can (and should) modify `environment.sh` and source that file
-before using this anywhere other than for local testing.
+containers).
+If you wish to maintain a local configuration, you can (and should) create
+`environment.local.sh` which will be sourced by `environment.sh` to override
+the local defaults.
 
 
 

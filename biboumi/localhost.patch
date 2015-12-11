@@ -1,0 +1,13 @@
+diff --git a/louloulibs/xmpp/xmpp_component.cpp b/louloulibs/xmpp/xmpp_component.cpp
+index 3017c0b..ce9552f 100644
+--- a/louloulibs/xmpp/xmpp_component.cpp
++++ b/louloulibs/xmpp/xmpp_component.cpp
+@@ -61,7 +61,7 @@ XmppComponent::XmppComponent(std::shared_ptr<Poller> poller, const std::string&
+ 
+ void XmppComponent::start()
+ {
+-  this->connect("127.0.0.1", Config::get("port", "5347"), false);
++  this->connect(Config::get("xmpp_server_ip", "127.0.0.1"), Config::get("port", "5347"), false);
+ }
+ 
+ bool XmppComponent::is_document_open() const

@@ -34,6 +34,8 @@ prosody:
         - "5281:5281"
         - "3478:3478"
         - "5222:5222"
+    expose:
+        - 5347
     links:
         - postgres:postgres
         - ldap:ldap
@@ -68,3 +70,10 @@ kaiwa:
         - LDAP_DN=cn=admin,$LDAP_DN
         - LDAP_PWD=$LDAP_PASS
         - LDAP_GROUP=$LDAP_GROUP
+
+biboumi:
+    build: biboumi/
+    volumes:
+        - /home/stuart/GitHub/xmpp_chat/biboumi/biboumi.cfg:/root/.config/biboumi/biboumi.cfg
+    links:
+        - prosody:prosody
